@@ -23,7 +23,7 @@ Route::post('/register', 'Auth\RegisterController@store');
 Route::get('/login', 'Auth\LoginController@index')->name('login');
 Route::post('/login', 'Auth\LoginController@store');
 
-Route::post('/logout', 'Auth\LoginController@store')->name('logout')->middleware('auth');
+Route::post('/logout', 'Auth\LoginController@store')->name('logout');
 
 // The front end of the site
 

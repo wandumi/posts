@@ -1,7 +1,7 @@
 @extends('frontend.layout.main')
 
 @section('content')
-    <div class="flex justify-center ">
-        <div class="w-2/3 sm:w-full bg-white m-5 p-6 rounded-sm">The front end of the app</div>
+    <div class="flex justify-center mx-auto ">
+        <div class="w-2/3 p-6 m-5 mx-auto bg-white rounded-sm">The front end of the app</div>
     </div>
 @endsection

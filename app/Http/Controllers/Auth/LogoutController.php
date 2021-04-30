@@ -10,11 +10,16 @@ class LogoutController extends Controller
 {
     
 
-    public function store()
+    // public function __construct()
+    // {
+    //     $this->middleware('guest')->except('store');
+    // }
+
+    public function __invoke()
     {
         Auth::logout();
     
-        return redirect()->route('login');
+        return redirect()->route('home');
 
     }
 } 

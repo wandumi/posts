@@ -31832,6 +31832,14 @@ video {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+#social-links ul {
+  display: flex !important;
+}
+
+#social-links ul li {
+  margin-right: 20px !important;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

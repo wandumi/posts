@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PostSocial;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
@@ -20,6 +22,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with('user')->latest()->paginate(10);
+
+        // $Share = new Share;
 
         return view('frontend.posts.index', compact('posts'));
     }
@@ -44,15 +48,21 @@ class PostController extends Controller
     {
         // validate the post
         $this->validate($request, [
+            'title' => 'required',
             'body' => 'required'
         ]);
 
         // save the post with the user
-        $request->user()->posts()->create([
+        $posted = $request->user()->posts()->create([
+            'title' => $request->title,
             'body' => $request->body
         ]);
 
-        return back();
+        Mail::to($request->user())->send(
+            new PostSocial($posted)
+        );
+
+        return back()->with('success', 'Saved Successfully');
     }
 
     /**
@@ -63,7 +73,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return $post;
     }
 
     /**
