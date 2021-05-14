@@ -34,3 +34,11 @@ Route::get('/dashboard', 'Backend\DashboardController@index')->name('dashboard')
 // Posts
 Route::resource('posts', 'PostController');
 
+
+Route::post('/typeform/webhook', 'TypeformController@webhook')->name('typeform.webhook');
+
+Route::post('/typeform/hooks', 'TypeformController@hooks')->name('typeform.hooks');
+
+Route::get('view', 'TypeformController@view');
+
+Route::get('zoho/oauth', 'ZohoController');

@@ -30,6 +30,7 @@
                 </div> --}}
                 @guest
                     <ul class="flex mr-16">
+                        
                         <li class="ml-10">
                             <a href="{{ route('login') }}" class="hover:text-gray-500">Login</a>
                         </li>

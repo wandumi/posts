@@ -10,8 +10,8 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans bg-gray-300">
-        <nav class="border-b border-gray-100 text-black bg-white">
-            <div class="container mx-auto flex items-center justify-between px-4 py-6">
+        <nav class="text-black bg-white border-b border-gray-100">
+            <div class="container flex items-center justify-between px-4 py-6 mx-auto">
                 <ul class="flex items-center">
                     <li class="ml-16">
                         <a href="{{ route('home') }}" class="w-32">Logo</a>
@@ -24,7 +24,7 @@
                 </ul>
                 <div class="flex items-center">
                     <div class="relative">
-                        <input type="text" name="search" id="" class="bg-gray-200 rounded-sm w-64 px-4 py-1">
+                        <input type="text" name="search" id="" class="w-64 px-4 py-1 bg-gray-200 rounded-sm">
                     </div>
                 </div>
                 {{-- Check the if the user is loggged in --}}
@@ -36,7 +36,7 @@
                         <li class="ml-6">
                         
 
-                            <form action="{{ route('logout') }}" method="post" class="p-3 inline">
+                            <form action="{{ route('logout') }}" method="post" class="inline p-3">
                                 @csrf
                                 <button type="submit">Logout</button>
                             </form>
