@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('home', function(){
+    return view('welcome');
+})->name('home');
+
 // Authentication
 Route::get('/register', 'Auth\RegisterController@index')->name('register');
 Route::post('/register', 'Auth\RegisterController@store');
@@ -42,3 +46,21 @@ Route::post('/typeform/hooks', 'TypeformController@hooks')->name('typeform.hooks
 Route::get('view', 'TypeformController@view');
 
 Route::get('zoho/oauth', 'ZohoController');
+
+Route::get('/login/facebook', 'FaceworkController@redirectToFacebookProvider');
+Route::get('login/facebook/callback', 'FaceworkController@handleProviderFacebookCallback');
+ 
+ 
+
+Route::get('facebook', 'FaceworkController@home')->name('facebook');
+
+Route::get('fb_user', 'FacebookcrudController@retrieveUserProfile');
+
+Route::post('sendfb', 'FacebookcrudController@publishToProfile');
+
+Route::get('fbook', 'FbookController@index')->name('fbook');
+
+// Route::get('resize', function(){
+//     $image = Image::make('Social_bg.jpg')->resize(300, 200);
+//     return $image->response('jpg');
+// });

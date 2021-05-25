@@ -47,7 +47,10 @@
                             <div class="px-4 py-2 mb-3 bg-gray-200 rounded-sm">
                                 
                                 <div>
-                                    <h3 class="font-semibold text-black">{{ $post->title }}</h3>
+                                    <h3 class="font-semibold text-black">
+                                        <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
+                                        
+                                    </h3>
                                     <p class="mb-2">
                                         {{ $post->body }}
                                     </p>

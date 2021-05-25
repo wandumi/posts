@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\PostSocial;
 use App\Post;
+use App\User;
+use App\Post_upload;
+use App\Mail\PostSocial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -21,6 +27,7 @@ class PostController extends Controller
      */
     public function index()
     {
+      
         $posts = Post::with('user')->latest()->paginate(10);
 
         // $Share = new Share;
@@ -73,7 +80,98 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return $post;
+        $image = Image::make('social.jpg')->resize(1200, 630);
+
+        // $user = Auth::user()->name;
+        $user = 'sichali';
+
+        $image->text('Growmytree Certificate', 480, 70, function($font){
+            $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
+            $font->size(24);
+            $font->color('#fff');
+            $font->valign('center');
+           
+        });
+
+        $image->text($user, 580, 110, function($font){
+            $font->file(base_path('public/fonts/Roboto-Light.ttf'));
+            $font->size(18);
+            $font->color('#fff');
+            $font->valign('center');
+           
+        });
+
+        // Left side of the page
+        $image->text('Carbon Emmision', 330, 280, function($font){
+            $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
+            $font->size(18);
+            $font->color('#fff');
+            $font->valign('left');
+           
+        });
+
+        $treeCarbon = 20 * 50;
+
+        $image->text($treeCarbon, 390, 320, function($font){
+            $font->file(base_path('public/fonts/Roboto-Light.ttf'));
+            $font->size(18);
+            $font->color('#fff');
+            $font->valign('left');
+           
+        });
+
+
+        // The right side of the page
+        $image->text('Tree Planted', 750, 280, function($font){
+            $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
+            $font->size(18);
+            $font->color('#fff');
+            $font->valign('left');
+           
+        });
+
+        $treePlanted = 150 * 50;
+
+        $image->text($treePlanted, 790, 320, function($font){
+            $font->file(base_path('public/fonts/Roboto-Light.ttf'));
+            $font->size(18);
+            $font->color('#fff');
+            $font->valign('left');
+           
+        });
+
+        $username = $user ."_".$image->basename; 
+        
+        $image->save($username);
+
+        //grab a post
+        //grab an image
+        //redirect to the view
+        //share the view
+        return view('frontend.posts.show', compact('post') );
+
+        // if($image)
+        // {
+        //     $certificate = new Post_upload;
+        //     $certificate->user_id = Auth::user()->id;
+        //     $certificate->file_name = $username;
+        //     $certificate->save();
+
+        //     $savedImage = Post_upload::where('user_id', Auth::user()->id)->first();
+           
+        //     // Fetch the image
+        //     $image = asset($savedImage->file_name);
+            
+
+        //     // return $image->response('jpg');
+        //     return view('frontend.posts.show', compact('post', 'image') );
+        // }
+
+        // return $image->response('jpg');
+        // return view('frontend.posts.show', compact('post') );
+
+        
+       
     }
 
     /**

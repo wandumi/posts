@@ -9,6 +9,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <script src="{{ mix('js/app.js') }}"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+        @section('header') @endsection
     </head>
     <body class="font-sans bg-gray-300">
         <nav class="text-black bg-white border-b border-gray-100">
@@ -21,6 +22,10 @@
                     
                     <li class="ml-6">
                         <a href="{{ route('posts.index') }}" class="hover:text-gray-500">Posts</a>
+                    </li>
+
+                    <li class="ml-6">
+                        <a href="{{ route('facebook') }}" class="hover:text-gray-500">facebook</a>
                     </li>
                 </ul>
                 {{-- <div class="flex items-center">

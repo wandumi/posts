@@ -20,4 +20,9 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function post()
+    {
+        return $this->hasOne(Post_upload::class);
+    }
 }
