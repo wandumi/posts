@@ -9,7 +9,6 @@ use App\Mail\PostSocial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Intervention\Image\ImageManager;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
@@ -80,97 +79,134 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $image = Image::make('social.jpg')->resize(1200, 630);
-
-        // $user = Auth::user()->name;
-        $user = 'sichali';
-
-        $image->text('Growmytree Certificate', 480, 70, function($font){
-            $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
-            $font->size(24);
+        $image = Image::make('giftcard.jpg')->fit(1800, 1800);
+        $image->text('MAX IST EIN!', 780, 200, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(46);
             $font->color('#fff');
             $font->valign('center');
-           
+            
         });
 
-        $image->text($user, 580, 110, function($font){
-            $font->file(base_path('public/fonts/Roboto-Light.ttf'));
-            $font->size(18);
+        $image->text('CLIMATE HERO!', 750, 300, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(46);
             $font->color('#fff');
             $font->valign('center');
-           
+            
         });
 
-        // Left side of the page
-        $image->text('Carbon Emmision', 330, 280, function($font){
-            $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
-            $font->size(18);
+        $image->text('Und das haben wir', 760, 500, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(46);
+            $font->color('#fff');
+            $font->valign('center');
+            
+        });
+
+        $image->text('gemeinsam erricht:', 750, 580, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(46);
+            $font->color('#fff');
+            $font->valign('center');
+            
+        });
+
+        $image->text('22 Baume', 740, 800, function($font){
+            $font->file(base_path('public/fonts/Caveat-Regular.ttf'));
+            $font->size(125);
+            $font->color('#fff');
+            $font->valign('center');
+            
+        });
+
+        // Three sections of text
+        $image->text('~484kg', 330, 1000, function($font){
+            $font->file(base_path('public/fonts/Caveat-Regular.ttf'));
+            $font->size(125);
             $font->color('#fff');
             $font->valign('left');
-           
         });
 
-        $treeCarbon = 20 * 50;
-
-        $image->text($treeCarbon, 390, 320, function($font){
-            $font->file(base_path('public/fonts/Roboto-Light.ttf'));
-            $font->size(18);
+        $image->text('=', 900, 1000, function($font){
+            $font->file(base_path('public/fonts/Caveat-Regular.ttf'));
+            $font->size(125);
             $font->color('#fff');
-            $font->valign('left');
-           
+            $font->valign('center');
         });
 
-
-        // The right side of the page
-        $image->text('Tree Planted', 750, 280, function($font){
-            $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
-            $font->size(18);
+        $image->text('~5%', 1250, 1000, function($font){
+            $font->file(base_path('public/fonts/Caveat-Regular.ttf'));
+            $font->size(125);
             $font->color('#fff');
-            $font->valign('left');
-           
+            $font->valign('right');
         });
 
-        $treePlanted = 150 * 50;
-
-        $image->text($treePlanted, 790, 320, function($font){
-            $font->file(base_path('public/fonts/Roboto-Light.ttf'));
-            $font->size(18);
+        // Two sections/ first column 
+        $image->text('CO2 konnten', 430, 1150, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(37);
             $font->color('#fff');
-            $font->valign('left');
-           
+            $font->valign('center');
         });
+        $image->text('neutralistert', 430, 1200, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(37);
+            $font->color('#fff');
+            $font->valign('center');
+        });
+        $image->text('werden', 460, 1250, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(37);
+            $font->color('#fff');
+            $font->valign('center');
+        });
+
+         // Two sections/ second column 
+         $image->text('meines CO2', 1300, 1150, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(37);
+            $font->color('#fff');
+            $font->valign('center');
+        });
+        $image->text('AusstoBes auf', 1280, 1200, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(37);
+            $font->color('#fff');
+            $font->valign('center');
+        });
+        $image->text('Lebenszeit', 1320, 1250, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(37);
+            $font->color('#fff');
+            $font->valign('center');
+        });
+
+
+    
+        $user = Auth::user()->name;
 
         $username = $user ."_".$image->basename; 
-        
-        $image->save($username);
+       
+        // return $image->response('jpg');
 
-        //grab a post
-        //grab an image
-        //redirect to the view
-        //share the view
-        return view('frontend.posts.show', compact('post') );
+        $savedImage = Post_upload::where('user_id', Auth::user()->id)->first();
+        // dd($savedImage);
 
-        // if($image)
-        // {
-        //     $certificate = new Post_upload;
-        //     $certificate->user_id = Auth::user()->id;
-        //     $certificate->file_name = $username;
-        //     $certificate->save();
+        if(!$savedImage)
+        {
+            $certificate = new Post_upload;
+            $certificate->user_id = Auth::user()->id;
+            $certificate->file_name = $username;
+            $certificate->save();
 
-        //     $savedImage = Post_upload::where('user_id', Auth::user()->id)->first();
-           
-        //     // Fetch the image
-        //     $image = asset($savedImage->file_name);
-            
+            $image->save($username);
+        }
 
-        //     // return $image->response('jpg');
-        //     return view('frontend.posts.show', compact('post', 'image') );
-        // }
 
         // return $image->response('jpg');
-        // return view('frontend.posts.show', compact('post') );
+        return view('frontend.posts.show', compact('post', 'savedImage') );
 
-        
        
     }
 
@@ -207,4 +243,20 @@ class PostController extends Controller
     {
         //
     }
+
+   public function certificate()
+   {
+       $download = Post_upload::where('user_id', Auth::user()->id)->first();
+       $user = Auth::user()->name;
+       //dd($user);
+
+       $file = public_path()."\\". $download->file_name;
+
+       $header = array(
+           'content-type: application/jpg'
+       );
+
+        //dd($file);
+       return Response()->download($file, $user."_certificate.jpg", $header);
+   }    
 }
