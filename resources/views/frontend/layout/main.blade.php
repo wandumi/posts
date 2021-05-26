@@ -27,6 +27,11 @@
                     <li class="ml-6">
                         <a href="{{ route('facebook') }}" class="hover:text-gray-500">facebook</a>
                     </li>
+
+                    <li class="ml-8">
+                        <a href="{{ route('certificates') }}" class="w-32">certificates</a>
+                    </li>
+                    
                 </ul>
                 {{-- <div class="flex items-center">
                     <div class="relative">

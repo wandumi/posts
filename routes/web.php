@@ -36,7 +36,9 @@ Route::post('/logout', 'Auth\LoginController@store')->name('logout');
 Route::get('/dashboard', 'Backend\DashboardController@index')->name('dashboard');
 
 // Posts
-Route::get('certificate', 'PostController@certificate')->name('download');
+Route::get('download', 'PostController@certificate')->name('download');
+Route::get('certificates', 'CertificateController@index')->name('certificates');
+Route::post('design', 'CertificateController@store')->name('design');
 Route::resource('posts', 'PostController');
 
 

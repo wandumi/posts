@@ -20,6 +20,10 @@
                     <li class="ml-8">
                         <a href="{{ route('posts.index') }}" class="w-32">Posts</a>
                     </li>
+
+                    <li class="ml-8">
+                        <a href="{{ route('certificates.index') }}" class="w-32">certificates</a>
+                    </li>
                     
                 </ul>
                 <div class="flex items-center">

@@ -2,86 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
-use App\User;
 use App\Post_upload;
-use App\Mail\PostSocial;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
-class PostController extends Controller
+class CertificateController extends Controller
 {
-    public function __constructor()
-    {
-        $this->middleware('auth')->only('store');
-    }
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-      
-        $posts = Post::with('user')->latest()->paginate(10);
-
-        // $Share = new Share;
-
-        return view('frontend.posts.index', compact('posts'));
+        return view('frontend.certificates.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
-    {
-        // validate the post
-        $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required'
-        ]);
+   {
+        //dd($request->all());
+        $name       = $request->name;
+        $second     = $request->second;
+        $third      = $request->third;
+        $forth      = $request->forth;
+        $firth      = $request->firth;
+        $sixth      = $request->sixth;
+        $seventh    = $request->seventh;
+        $eigth      = $request->eigth;
+        $nigth      = $request->nigth;
 
-        // save the post with the user
-        $posted = $request->user()->posts()->create([
-            'title' => $request->title,
-            'body' => $request->body
-        ]);
-
-        Mail::to($request->user())->send(
-            new PostSocial($posted)
-        );
-
-        return back()->with('success', 'Saved Successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, Post $post)
-    {
-       
         $image = Image::make('giftcard.jpg')->fit(1800, 1800);
-        $image->text('MAX IST EIN!', 780, 200, function($font){
+
+        $image->text($name, 780, 200, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
             $font->size(46);
             $font->color('#fff');
@@ -94,18 +42,17 @@ class PostController extends Controller
             $font->size(46);
             $font->color('#fff');
             $font->valign('center');
-            
         });
 
-        $image->text('Und das haben wir', 760, 500, function($font){
+        $image->text($second, 760, 500, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
             $font->size(46);
             $font->color('#fff');
             $font->valign('center');
             
         });
-
-        $image->text('gemeinsam erricht:', 750, 580, function($font){
+        // dd($third);
+        $image->text($third, 750, 580, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
             $font->size(46);
             $font->color('#fff');
@@ -163,8 +110,8 @@ class PostController extends Controller
             $font->valign('center');
         });
 
-         // Two sections/ second column 
-         $image->text('meines CO2', 1300, 1150, function($font){
+        // Two sections/ second column 
+        $image->text('meines CO2', 1300, 1150, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
             $font->size(37);
             $font->color('#fff');
@@ -184,14 +131,14 @@ class PostController extends Controller
         });
 
 
-    
+
         $user = Auth::user()->name;
 
-        $username = $user ."_".$image->basename; 
-       
+        $username = $name ."_".$image->basename; 
+    
         // return $image->response('jpg');
 
-        $savedImage = Post_upload::where('user_id', Auth::user()->id)->first();
+        $savedImage = Post_upload::where('file_name', $name."_giftcard.jpg")->first();
         // dd($savedImage);
 
         if(!$savedImage)
@@ -202,67 +149,10 @@ class PostController extends Controller
             $certificate->save();
 
             $image->save($username);
+            
         }
+        
+        return view('frontend.posts.show', compact('savedImage') );
 
-
-        // return $image->response('jpg');
-        return view('frontend.posts.show', compact('post', 'savedImage') );
-
-       
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Post $post)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Post $post)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Post $post)
-    {
-        //
-    }
-
-   public function certificate()
-   {
-       $download = Post_upload::where('user_id', Auth::user()->id)->first();
-       $user = Auth::user()->name;
-       //dd($user);
-
-       $file = public_path()."\\". $download->file_name;
-
-       $header = array(
-           'content-type: application/jpg'
-       );
-
-        //dd($file);
-       return Response()->download($file, $user."_certificate.jpg", $header);
-   }    
-
-   public function createCertificate()
-   {
-       
    }
 }

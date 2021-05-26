@@ -13,9 +13,9 @@
 
 {{-- <meta property="og:url"     content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
 <meta property="og:type"         content="article" /> --}}
-<meta property="og:title"        content="{{ $post->title }}" />
+{{-- <meta property="og:title"        content="{{ $post->title }}" />
 <meta property="og:description"  content="How much does culture influence creative thinking?" /> 
-<meta property="og:image"        content="https://8eb335974116.ngrok.io/{{ asset('sichali_social.jpg') }}" />
+<meta property="og:image"        content="https://8eb335974116.ngrok.io/{{ asset('sichali_social.jpg') }}" /> --}}
 
 @endsection
 @section('content')
@@ -29,10 +29,10 @@
                         
                         <div>
                             
-                            <h3 class="font-semibold text-black">{{ $post->title }}</h3>
+                            {{-- <h3 class="font-semibold text-black">{{ $post->title }}</h3>
                             <p class="mb-2">
                                 {{ $post->body }}
-                            </p>
+                            </p> --}}
                         </div>
                         <div>
                           
@@ -46,10 +46,10 @@
                         <div class="pt-4">
                             <a href="{{ route('download')}}" class="px-2 py-1 text-white bg-green-600">Download Certificate</a>
                         </div>
-                        <div>
+                        {{-- <div>
                             <a href="#" class="text-sm"><span class="font-semibold">Posted by: </span>  name </a>
                             <span class="text-sm text-gray-600">({{ $post->created_at->diffForHumans() }})</span>
-                        </div>
+                        </div> --}}
 
                     </div>
                             
