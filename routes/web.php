@@ -36,8 +36,10 @@ Route::post('/logout', 'Auth\LoginController@store')->name('logout');
 Route::get('/dashboard', 'Backend\DashboardController@index')->name('dashboard');
 
 // Posts
-Route::get('download', 'PostController@certificate')->name('download');
+Route::get('download', 'CertificateController@download')->name('download');
 Route::get('certificates', 'CertificateController@index')->name('certificates');
+// the download url, its a post, get is also working 
+Route::post('certificate', 'CertificateController@certificate')->name('certificate');
 Route::post('design', 'CertificateController@store')->name('design');
 Route::resource('posts', 'PostController');
 
@@ -67,3 +69,6 @@ Route::get('fbook', 'FbookController@index')->name('fbook');
 //     $image = Image::make('Social_bg.jpg')->resize(300, 200);
 //     return $image->response('jpg');
 // });
+
+
+Route::get('/shared/image', 'CertificateController@downloadCertificateImage');

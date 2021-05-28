@@ -14,20 +14,19 @@ class CertificateController extends Controller
         return view('frontend.certificates.index');
     }
 
+    public function download()
+    {
+        return view('frontend.certificates.download'); 
+    }
+
     public function store(Request $request)
-   {
+    {
         //dd($request->all());
         $name       = $request->name;
         $second     = $request->second;
         $third      = $request->third;
-        $forth      = $request->forth;
-        $firth      = $request->firth;
-        $sixth      = $request->sixth;
-        $seventh    = $request->seventh;
-        $eigth      = $request->eigth;
-        $nigth      = $request->nigth;
 
-        $image = Image::make('giftcard.jpg')->fit(1800, 1800);
+        $image = Image::make('certificate.jpg')->fit(1800, 1800);
 
         $image->text($name, 780, 200, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
@@ -123,6 +122,7 @@ class CertificateController extends Controller
             $font->color('#fff');
             $font->valign('center');
         });
+
         $image->text('Lebenszeit', 1320, 1250, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
             $font->size(37);
@@ -130,29 +130,158 @@ class CertificateController extends Controller
             $font->valign('center');
         });
 
+        // dd($image);
+
+        $username = $name ."_".$image->basename;
+
+        $image->save($username);
+
+        $file = public_path()."\\". $username;
+
+        $header = array(
+            'content-type: application/jpg'
+        );
+
+        return Response()->download($file)->deleteFileAfterSend();
 
 
-        $user = Auth::user()->name;
+        // if ($language == "english") {
+        //     $pdf = PDF::loadView('certificate-english', compact('order_items_qty', 'certificate_data', 'certificate_lines_english_content'));
+        // } else {
+        //     $pdf = PDF::loadView('certificate', compact('order_items_qty', 'certificate_data', 'certificate_lines_deutch_content'));
+        // }
+        // return $pdf->stream(); //return pdf on the browser
 
-        $username = $name ."_".$image->basename; 
-    
-        // return $image->response('jpg');
 
-        $savedImage = Post_upload::where('file_name', $name."_giftcard.jpg")->first();
-        // dd($savedImage);
+        // /// return the output as a blob to axios request
 
-        if(!$savedImage)
-        {
-            $certificate = new Post_upload;
-            $certificate->user_id = Auth::user()->id;
-            $certificate->file_name = $username;
-            $certificate->save();
+        // if ($language == "english") {
+        //     $pdf = PDF::loadView('certificate-english', compact('order_items_qty', 'certificate_data', 'certificate_lines_english_content'));
+        // } else {
+        //     $pdf = PDF::loadView('certificate', compact('order_items_qty', 'certificate_data', 'certificate_lines_deutch_content'));
+        // }
+        // $pdf->setPaper('a4', 'portrait');
+        // return $pdf->output();
 
-            $image->save($username);
+    }
+
+    public function certificate(Request $request)
+    {
+        //dd($request->all());
+        $name = $request->name;
+        $order_id = $request->order_id;
+        $customer_id = $request->customer_id; 
+        $language = $request->language;
+        $sponsor = $request->sponsor;
+
+        $image = Image::make('certificate.jpg')->fit(1800, 1800)->encode('jpg');
+
+        $image->text($name, 780, 200, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(46);
+            $font->color('#fff');
+            $font->valign('center');
             
-        }
-        
-        return view('frontend.posts.show', compact('savedImage') );
+        });
 
-   }
+        $image->text('CLIMATE HERO!', 750, 300, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(46);
+            $font->color('#fff');
+            $font->valign('center');
+        });
+
+        $image->text('me', 760, 500, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(46);
+            $font->color('#fff');
+            $font->valign('center');
+            
+        });
+        // dd($third);
+        $image->text('Somehow', 750, 580, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(46);
+            $font->color('#fff');
+            $font->valign('center');
+            
+        });
+
+        $image->text('22 Baume', 740, 800, function($font){
+            $font->file(base_path('public/fonts/Caveat-Regular.ttf'));
+            $font->size(125);
+            $font->color('#fff');
+            $font->valign('center');
+            
+        });
+
+        // Three sections of text
+        $image->text('~484kg', 330, 1000, function($font){
+            $font->file(base_path('public/fonts/Caveat-Regular.ttf'));
+            $font->size(125);
+            $font->color('#fff');
+            $font->valign('left');
+        });
+
+        $image->text('=', 900, 1000, function($font){
+            $font->file(base_path('public/fonts/Caveat-Regular.ttf'));
+            $font->size(125);
+            $font->color('#fff');
+            $font->valign('center');
+        });
+
+        $image->text('~5%', 1250, 1000, function($font){
+            $font->file(base_path('public/fonts/Caveat-Regular.ttf'));
+            $font->size(125);
+            $font->color('#fff');
+            $font->valign('right');
+        });
+
+        // Two sections/ first column 
+        $image->text('CO2 konnten', 420, 1150, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(37);
+            $font->color('#fff');
+            $font->valign('center');
+        });
+        $image->text('neutralistert', 430, 1200, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(37);
+            $font->color('#fff');
+            $font->valign('center');
+        });
+        $image->text('werden', 460, 1250, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(37);
+            $font->color('#fff');
+            $font->valign('center');
+        });
+
+        // Two sections/ second column 
+        $image->text('meines CO2', 1300, 1150, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(37);
+            $font->color('#fff');
+            $font->valign('center');
+        });
+        $image->text('AusstoBes auf', 1280, 1200, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(37);
+            $font->color('#fff');
+            $font->valign('center');
+        });
+
+        $image->text('Lebenszeit', 1320, 1250, function($font){
+            $font->file(base_path('public/fonts/Helvetica.ttf'));
+            $font->size(37);
+            $font->color('#fff');
+            $font->valign('center');
+        });
+
+        // dd($image);
+        $username = $name ."_".$image->basename;
+
+        return $image->response('jpg');
+
+    }
 }

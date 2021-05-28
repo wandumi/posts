@@ -80,7 +80,8 @@ class PostController extends Controller
     public function show(Request $request, Post $post)
     {
        
-        $image = Image::make('giftcard.jpg')->fit(1800, 1800);
+        $image = Image::make('certificate.jpg')->fit(1800, 1800);
+
         $image->text('MAX IST EIN!', 780, 200, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
             $font->size(46);
@@ -188,8 +189,12 @@ class PostController extends Controller
         $user = Auth::user()->name;
 
         $username = $user ."_".$image->basename; 
+
+        // $image->header('Content-Type', 'image/jpg');
+
+        // return $image;
        
-        // return $image->response('jpg');
+        return $image->response();
 
         $savedImage = Post_upload::where('user_id', Auth::user()->id)->first();
         // dd($savedImage);
@@ -261,8 +266,8 @@ class PostController extends Controller
        return Response()->download($file, $user."_certificate.jpg", $header);
    }    
 
-   public function createCertificate()
+   public function download()
    {
-       
+      return view('frontend.certificates.download'); 
    }
 }
