@@ -168,7 +168,7 @@ class CertificateController extends Controller
     public function certificate(Request $request)
     {
         //dd($request->all());
-        $name = $request->name;
+        $name = strtoupper($request->name);
         $order_id = $request->order_id;
         $customer_id = $request->customer_id; 
         $language = $request->language;
@@ -176,32 +176,43 @@ class CertificateController extends Controller
 
         $image = Image::make('certificate.jpg')->fit(1800, 1800)->encode('jpg');
 
-        $image->text($name, 780, 200, function($font){
-            $font->file(base_path('public/fonts/Helvetica.ttf'));
-            $font->size(46);
+        // Setting the position of the string 
+        // Starting point
+        if(strlen($name) >= 10){
+            $pos = 600;  // this is the position of your label you need to adjust it
+         }elseif(strlen($name) <= 8 ){
+            $pos = 650;  //pos label you need to adjust it
+         }elseif(strlen($name) == 3){
+            $pos = 185;  //pos label you need to adjust it
+         }
+
+        $image->text($name, $pos, 200, function($font){
+            $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
+            $font->size(60);
             $font->color('#fff');
+            // $font->align('center');
             $font->valign('center');
             
         });
 
-        $image->text('CLIMATE HERO!', 750, 300, function($font){
-            $font->file(base_path('public/fonts/Helvetica.ttf'));
-            $font->size(46);
+        $image->text('CLIMATE HERO!', 650, 300, function($font){
+            $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
+            $font->size(60);
             $font->color('#fff');
             $font->valign('center');
         });
 
-        $image->text('me', 760, 500, function($font){
-            $font->file(base_path('public/fonts/Helvetica.ttf'));
-            $font->size(46);
+        $image->text('Third text on the picture', 660, 500, function($font){
+            $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
+            $font->size(55);
             $font->color('#fff');
             $font->valign('center');
             
         });
         // dd($third);
-        $image->text('Somehow', 750, 580, function($font){
-            $font->file(base_path('public/fonts/Helvetica.ttf'));
-            $font->size(46);
+        $image->text('Last line of the top four', 670, 580, function($font){
+            $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
+            $font->size(55);
             $font->color('#fff');
             $font->valign('center');
             
@@ -240,19 +251,19 @@ class CertificateController extends Controller
         // Two sections/ first column 
         $image->text('CO2 konnten', 420, 1150, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
-            $font->size(37);
+            $font->size(45);
             $font->color('#fff');
             $font->valign('center');
         });
         $image->text('neutralistert', 430, 1200, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
-            $font->size(37);
+            $font->size(45);
             $font->color('#fff');
             $font->valign('center');
         });
         $image->text('werden', 460, 1250, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
-            $font->size(37);
+            $font->size(45);
             $font->color('#fff');
             $font->valign('center');
         });
@@ -260,26 +271,23 @@ class CertificateController extends Controller
         // Two sections/ second column 
         $image->text('meines CO2', 1300, 1150, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
-            $font->size(37);
+            $font->size(45);
             $font->color('#fff');
             $font->valign('center');
         });
         $image->text('AusstoBes auf', 1280, 1200, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
-            $font->size(37);
+            $font->size(45);
             $font->color('#fff');
             $font->valign('center');
         });
 
         $image->text('Lebenszeit', 1320, 1250, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
-            $font->size(37);
+            $font->size(45);
             $font->color('#fff');
             $font->valign('center');
         });
-
-        // dd($image);
-        $username = $name ."_".$image->basename;
 
         return $image->response('jpg');
 

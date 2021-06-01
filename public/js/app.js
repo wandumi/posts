@@ -1979,7 +1979,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       certificate: {
-        name: 'sichali',
+        name: 'sichali numnanfdif',
         order_id: '',
         customer_id: '',
         language: '',
@@ -35236,15 +35236,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************!*\
   !*** ./resources/js/views/certificates.vue ***!
   \*********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _certificates_vue_vue_type_template_id_c0494f8a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./certificates.vue?vue&type=template&id=c0494f8a& */ "./resources/js/views/certificates.vue?vue&type=template&id=c0494f8a&");
 /* harmony import */ var _certificates_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./certificates.vue?vue&type=script&lang=js& */ "./resources/js/views/certificates.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _certificates_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _certificates_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -35274,7 +35273,7 @@ component.options.__file = "resources/js/views/certificates.vue"
 /*!**********************************************************************!*\
   !*** ./resources/js/views/certificates.vue?vue&type=script&lang=js& ***!
   \**********************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
