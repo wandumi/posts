@@ -7,9 +7,9 @@ http://image.intervention.io/getting_started/introduction
 The intervention image use the Make method which finds the image on the public folder, (Background image)
 The text method is available to add text to the image.
  it has four parameters 
- -text(name or city) 
- -width(from the left) 
- -height(from the top) 
+ 1-text(name or city) 
+ 2-width(from the left) 
+ 3-height(from the top) 
  and it takes a closure where the font parameters of the text are attached to -font-file, is the most needed one if
 
 it is not used the text doesnt show
