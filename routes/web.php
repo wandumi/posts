@@ -43,6 +43,9 @@ Route::post('certificate', 'CertificateController@certificate')->name('certifica
 Route::post('design', 'CertificateController@store')->name('design');
 Route::resource('posts', 'PostController');
 
+Route::post('pdf', 'CertificateController@pdf');
+Route::get('pdfs', 'CertificateController@pdfs');
+
 
 Route::post('/typeform/webhook', 'TypeformController@webhook')->name('typeform.webhook');
 

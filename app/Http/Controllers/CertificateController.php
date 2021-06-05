@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Post_upload;
+set_time_limit(300);
+
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class CertificateController extends Controller
 {
@@ -179,26 +180,27 @@ class CertificateController extends Controller
         // Setting the position of the string 
         // Starting point
         if(strlen($name) >= 10){
-            $pos = 600;  // this is the position of your label you need to adjust it
+            $pos = 950;  // this is the position of your label you need to adjust it
          }elseif(strlen($name) <= 8 ){
-            $pos = 650;  //pos label you need to adjust it
-         }elseif(strlen($name) == 3){
-            $pos = 185;  //pos label you need to adjust it
+            $pos = 950;  //pos label you need to adjust it
          }
 
         $image->text($name, $pos, 200, function($font){
             $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
             $font->size(60);
             $font->color('#fff');
-            // $font->align('center');
+            $font->align('center');
             $font->valign('center');
             
         });
 
-        $image->text('CLIMATE HERO!', 650, 300, function($font){
+       
+
+        $image->text('CLIMATE HERO!', $pos, 300, function($font){
             $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
             $font->size(60);
             $font->color('#fff');
+            $font->align('center');
             $font->valign('center');
         });
 
@@ -292,4 +294,32 @@ class CertificateController extends Controller
         return $image->response('jpg');
 
     }
+
+    public function pdf(Request $request)
+    {
+        $name = $request->name;
+        $order = $request->order_id;
+        
+        $data = [
+            'name' => $name,
+            'order' => $order
+        ];
+
+        // Auth::attempt(['email' => $email, 'password' => $password]);
+        // view()->share('users', $data);
+
+        $pdf = PDF::loadView('frontend.certificates.certificate', array( 'name' => $name, 'order' => $order) );
+
+        return $pdf->stream();
+    }
+
+    public function pdfs()
+    {
+        // return view('frontend.certificates.original');
+        
+        $pdf = PDF::loadView('frontend.certificates.original');
+
+        return $pdf->download();
+    }
+
 }

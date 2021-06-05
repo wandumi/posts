@@ -25,4 +25,5 @@ class Post extends Model
     {
         return $this->hasOne(Post_upload::class);
     }
+
 }

@@ -22,7 +22,7 @@
                     </li>
 
                     <li class="ml-8">
-                        <a href="{{ route('certificates.index') }}" class="w-32">certificates</a>
+                        {{-- <a href="{{ route('certificates.index') }}" class="w-32">certificates</a> --}}
                     </li>
                     
                 </ul>

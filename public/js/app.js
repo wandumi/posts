@@ -1979,7 +1979,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       certificate: {
-        name: 'sichali numnanfdif',
+        name: 'munandi',
         order_id: '',
         customer_id: '',
         language: '',
@@ -35308,8 +35308,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\users\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\users\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\xampp\htdocs\posts\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\posts\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

@@ -177,6 +177,7 @@ return [
 
         Jorenvh\Share\Providers\ShareServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
       
 
     ],
@@ -232,7 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Share' => Jorenvh\Share\ShareFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        
+        'PDF' => Barryvdh\DomPDF\Facade::class, 
 
     ],
 
