@@ -22,7 +22,7 @@ export default {
     data() {
         return {
             certificate: {
-                name: 'munandi',
+                name: 'munandi sichali wandumi',
                 order_id: '',
                 customer_id: '', 
                 language: '',

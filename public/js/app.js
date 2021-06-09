@@ -1979,7 +1979,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       certificate: {
-        name: 'munandi',
+        name: 'munandi sichali wandumi',
         order_id: '',
         customer_id: '',
         language: '',
