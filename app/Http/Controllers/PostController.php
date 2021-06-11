@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\mailjet_test;
 use App\Post;
 use App\User;
 use App\Post_upload;
@@ -10,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Storage;
+// use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -65,7 +66,7 @@ class PostController extends Controller
         ]);
 
         Mail::to($request->user())->send(
-            new PostSocial($posted)
+            new mailjet_test($posted)
         );
 
         return back()->with('success', 'Saved Successfully');

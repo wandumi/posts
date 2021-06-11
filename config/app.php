@@ -178,6 +178,9 @@ return [
         Jorenvh\Share\Providers\ShareServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+
+        Mailjet\LaravelMailjet\MailjetServiceProvider::class,
+        Mailjet\LaravelMailjet\MailjetMailServiceProvider::class,
       
 
     ],
@@ -234,6 +237,7 @@ return [
         'Share' => Jorenvh\Share\ShareFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'PDF' => Barryvdh\DomPDF\Facade::class, 
+        'Mailjet' => Mailjet\LaravelMailjet\Facades\Mailjet::class,
 
     ],
 

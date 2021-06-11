@@ -38,5 +38,10 @@ return [
         'default_graph_version' => 'v2.12',
     ],
 
+    'mailjet' => [
+        'key' => env('MAILJET_APIKEY'),
+        'secret' => env('MAILJET_APISECRET'),
+    ]
+
 
 ];
