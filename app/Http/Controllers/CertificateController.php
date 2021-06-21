@@ -204,26 +204,29 @@ class CertificateController extends Controller
             $font->valign('center');
         });
 
-        $image->text('Third text on the picture', 500, 520, function($font){
+        $image->text('Third text on the picture', 900, 520, function($font){
             $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
             $font->size(80);
             $font->color('#fff');
+            $font->align('center');
             $font->valign('center');
             
         });
         // dd($third);
-        $image->text('Last line of the top four', 509, 600, function($font){
+        $image->text('Last line of the top', 909, 600, function($font){
             $font->file(base_path('public/fonts/Roboto-Bold.ttf'));
             $font->size(80);
             $font->color('#fff');
+            $font->align('center');
             $font->valign('center');
             
         });
 
-        $image->text('22 Baume', 580, 780, function($font){
+        $image->text('22 Baume', 900, 780, function($font){
             $font->file(base_path('public/fonts/Caveat-Bold.ttf'));
             $font->size(180);
             $font->color('#fff');
+            $font->align('center');
             $font->valign('center');
             
         });
@@ -254,43 +257,49 @@ class CertificateController extends Controller
         });
 
         // Two sections/ first column 
-        $image->text('CO2 konnten', 320, 1220, function($font){
+        $image->text('CO2 konnten', 500, 1220, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
             $font->size(60);
             $font->color('#fff');
+            $font->align('center');
             $font->valign('center');
         });
-        $image->text('neutralistert', 330, 1300, function($font){
+        $image->text('neutralistert', 500, 1300, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
             $font->size(60);
             $font->color('#fff');
+            $font->align('center');
             $font->valign('center');
         });
-        $image->text('werden', 380, 1370, function($font){
+        $image->text('werden', 500, 1370, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
             $font->size(60);
             $font->color('#fff');
+            $font->align('center');
             $font->valign('center');
         });
 
         // Two sections/ second column 
-        $image->text('meines CO2', 1200, 1220, function($font){
+        $image->text('meines CO2', 1400, 1220, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
             $font->size(60);
             $font->color('#fff');
+            $font->align('center');
             $font->valign('center');
         });
-        $image->text('AusstoBes auf', 1180, 1300, function($font){
+        $image->text('AusstoBes auf', 1400, 1300, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
             $font->size(60);
             $font->color('#fff');
+            $font->align('center');
             $font->valign('center');
         });
 
-        $image->text('Lebenszeit', 1220, 1370, function($font){
+        $image->text('Lebenszeit', 1400, 1370, function($font){
             $font->file(base_path('public/fonts/Helvetica.ttf'));
             $font->size(60);
             $font->color('#fff');
+            $font->align('center');
             $font->valign('center');
         });
 

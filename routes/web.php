@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('home', function(){
-    return view('welcome');
-})->name('home');
+// Route::get('home', function(){
+//     return view('welcome');
+// })->name('home');
 
 // Authentication
 Route::get('/register', 'Auth\RegisterController@index')->name('register');
@@ -27,7 +27,7 @@ Route::post('/register', 'Auth\RegisterController@store');
 Route::get('/login', 'Auth\LoginController@index')->name('login');
 Route::post('/login', 'Auth\LoginController@store');
 
-Route::post('/logout', 'Auth\LoginController@store')->name('logout');
+Route::post('/logout', 'Auth\LogoutController')->name('logout');
 
 // The front end of the site
 
